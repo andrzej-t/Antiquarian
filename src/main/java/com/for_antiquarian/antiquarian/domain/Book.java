@@ -19,7 +19,16 @@ public class Book {
     @Column(name = "id", unique = true)
     @NotNull
     private Long id;
+
+    @Column(name = "title")
+    @NotNull
     private String title;
+
+    @Column(name = "signature", unique = true)
+    @NotNull
     private String signature;
-    private Status status;
+
+    @Column(name = "bookStatus")
+    @NotNull
+    private BookStatus bookStatus;
 }
