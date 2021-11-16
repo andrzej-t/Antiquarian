@@ -3,49 +3,46 @@ package com.for_antiquarian.antiquarian.domain;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "LIBRARIAN")
 public class Librarian {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true)
+    @Column(name = "ID", unique = true)
     @NotNull
     private Long id;
 
-    @Column(name = "libName")
+    @Column(name = "LIB_NAME")
     @NotNull
     private String libName;
 
-    @Column(name = "libSurname")
+    @Column(name = "LIB_SURNAME")
     @NotNull
     private String libSurname;
 
-    @Column(name = "libEmail")
+    @Column(name = "LIB_EMAIL")
     @NotNull
     private String libEmail;
 
-    @Column(name = "libAdress")
+    @Column(name = "LIB_ADDRESS")
     @NotNull
     private String libAddress;
 
-    @Column(name = "libPhoneNumber")
+    @Column(name = "LIB_PHONE_NUMBER")
     @NotNull
     private int libPhoneNumber;
 
-    @Column(name = "workerFrom")
+    @Column(name = "WORKER_FROM")
     @NotNull
     private LocalDate workerFrom;
 
-    @Column(name = "workerTo")
-    @NotNull
+    @Column(name = "WORKER_TO")
     private LocalDate workerTo;
 }

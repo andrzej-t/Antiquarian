@@ -3,54 +3,68 @@ package com.for_antiquarian.antiquarian.domain;
 import com.sun.istack.NotNull;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@Table(name = "READER")
 public class Reader {
 
     @Id
     @GeneratedValue
-    @Column(name = "id", unique = true)
+    @Column(name = "ID", unique = true)
     @NotNull
     private Long id;
 
-    @Column(name = "readerName")
+    @Column(name = "READER_NAME")
     @NotNull
     private String readerName;
 
-    @Column(name = "accountFrom")
-    @NotNull
-    private LocalDate accountFrom;
-
-    @Column(name = "accountTo")
-    @NotNull
-    private LocalDate accountTo;
-
-    @Column(name = "readerSurname")
+    @Column(name = "READER_SURNAME")
     @NotNull
     private String readerSurname;
 
-    @Column(name = "readerEmail")
+    @Column(name = "ACCOUNT_FROM")
+    @NotNull
+    private LocalDate accountFrom;
+
+    @Column(name = "ACCOUNT_TO")
+    private LocalDate accountTo;
+
+    @Column(name = "READER_EMAIL")
     @NotNull
     private String readerEmail;
 
-    @Column(name = "readerAddress")
+    @Column(name = "READER_ADDRESS")
     @NotNull
     private String readerAddress;
 
-    @Column(name = "readerPhoneNumber")
+    @Column(name = "READER_PHONE_NUMBER")
     @NotNull
     private int readerPhoneNumber;
 
-    @Column(name = "readerStatus")
+    @Column(name = "READER_STATUS")
     @NotNull
     private ReaderStatus readerStatus;
 
+    @OneToMany(
+            mappedBy = "book"
+    )
+    private List<Borrowing> borrowings;
+
+    public Reader(Long id, String readerName, String readerSurname, LocalDate accountFrom, LocalDate accountTo, String readerEmail, String readerAddress, int readerPhoneNumber, ReaderStatus readerStatus) {
+        this.id = id;
+        this.readerName = readerName;
+        this.readerSurname = readerSurname;
+        this.accountFrom = accountFrom;
+        this.accountTo = accountTo;
+        this.readerEmail = readerEmail;
+        this.readerAddress = readerAddress;
+        this.readerPhoneNumber = readerPhoneNumber;
+        this.readerStatus = readerStatus;
+    }
 }
