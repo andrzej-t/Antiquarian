@@ -1,5 +1,6 @@
 package com.for_antiquarian.antiquarian.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,9 +29,11 @@ public class Borrowing {
     private LocalDate returnDate;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Book book;
 
     @ManyToOne(fetch = FetchType.LAZY)
+    @JsonBackReference
     private Reader reader;
 
 }

@@ -1,7 +1,8 @@
-package com.for_antiquarian.antiquarian.service;
+package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.Book;
-import com.for_antiquarian.antiquarian.repository.BookRepository;
+import com.for_antiquarian.antiquarian.mapper.BookMapper;
+import com.for_antiquarian.antiquarian.service.BookService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,12 +15,14 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Component
-public class BookService {
+public class BookFacade {
 
     @Autowired
-    BookRepository bookRepository;
+    BookService bookService;
 
-    public List<Book> findAllBooks() {
-        return bookRepository.findAll();
-    }
+    @Autowired
+    BookMapper bookMapper;
+
+    public List<Book> showAllBooks() { return bookService.findAllBooks(); }
+
 }
