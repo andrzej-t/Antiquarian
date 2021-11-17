@@ -31,12 +31,12 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/open/**").hasRole(READER.name())
                 .anyRequest()
                 .authenticated()
                 .and()
-                .formLogin();
-//                .loginPage("/login").permitAll();
+//                .httpBasic();
+                .formLogin()
+                .loginPage("/login").permitAll();
     }
 
     @Override

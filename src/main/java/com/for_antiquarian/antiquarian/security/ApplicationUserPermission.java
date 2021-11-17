@@ -8,6 +8,7 @@ import lombok.Getter;
 public enum ApplicationUserPermission {
 
     BORROW_BOOK("book:borrow"),
+    SHOW_ALL_BOOKS("book:showAll"),
     RETURN_BOOK("book:return"),
     CREATE_LIBRARIAN_ACCOUNT("librarianAccount:create"),
     BLOCK_LIBRARIAN_ACCOUNT("librarianAccount:block");
