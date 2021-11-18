@@ -30,10 +30,14 @@ public class BookController {
 
     @GetMapping(value = "/title")
     @PreAuthorize("hasAnyAuthority('book:showBookByTitle')")
-    public List<BookDto> getBookByTitle(@RequestParam String title) { return bookFacade.showBookByTitle(title); }
+    public List<BookDto> getBookByTitle(@RequestParam("title") String title) { return bookFacade.showBookByTitle(title); }
 
     @GetMapping(value = "/author")
     @PreAuthorize("hasAnyAuthority('book:showBookByAuthor')")
     public List<BookDto> getBookByAuthorSurname(@RequestParam String authorSurname) { return bookFacade.showBookByAuthorSurname(authorSurname); }
+
+    @GetMapping(value = "/signature")
+    @PreAuthorize("hasAnyAuthority('book:showBookBySignature')")
+    public Optional<Book> getBookBySignature(@RequestParam String signature) { return bookFacade.showBookBySignature(signature); }
 
 }

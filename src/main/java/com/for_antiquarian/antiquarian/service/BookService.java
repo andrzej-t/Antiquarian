@@ -31,4 +31,6 @@ public class BookService {
     public List<BookDto> findBookByTitle(String title) { return bookMapper.mapToBookDtoList(bookRepository.findAllByTitle(title)); }
 
     public List<BookDto> findBookByAuthorSurname(String authorSurname) { return bookMapper.mapToBookDtoList(bookRepository.findAllByAuthorSurname(authorSurname)); }
+
+    public Optional<Book> findBookBySignature(String signature) { return bookRepository.findBySignature(signature); }
 }
