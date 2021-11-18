@@ -1,6 +1,7 @@
 package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.Book;
+import com.for_antiquarian.antiquarian.domain.BookDto;
 import com.for_antiquarian.antiquarian.mapper.BookMapper;
 import com.for_antiquarian.antiquarian.service.BookService;
 import lombok.AllArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,6 +25,12 @@ public class BookFacade {
     @Autowired
     BookMapper bookMapper;
 
-    public List<Book> showAllBooks() { return bookService.findAllBooks(); }
+    public List<BookDto> showAllBooks() { return bookService.findAllBooks(); }
+
+    public Optional<Book> showBookById(Long id) { return bookService.findBookById(id);}
+
+    public List<BookDto> showBookByTitle(String title) { return bookService.findBookByTitle(title);}
+
+    public List<BookDto> showBookByAuthorSurname(String authorSurname) { return bookService.findBookByAuthorSurname(authorSurname);}
 
 }

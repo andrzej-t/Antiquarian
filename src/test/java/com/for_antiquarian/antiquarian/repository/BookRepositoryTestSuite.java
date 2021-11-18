@@ -19,7 +19,7 @@ public class BookRepositoryTestSuite {
     public void testBookRepositorySave() {
 
         //Given
-        Book book = new Book(null, "Title2", "Author1", "signature1", BookStatus.AVAILABLE);
+        Book book = new Book(null, "Title4", "Name4", "Surname4", 1993, "signature5", BookStatus.AVAILABLE);
 
         //When
         bookRepository.save(book);

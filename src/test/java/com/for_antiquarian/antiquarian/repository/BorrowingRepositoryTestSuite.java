@@ -20,8 +20,8 @@ public class BorrowingRepositoryTestSuite {
     public void testBorrowingRepositorySave() {
 
         //Given
-        Book book = new Book(44L, "Title2", "Author1", "signature1", BookStatus.AVAILABLE);
-        Reader reader = new Reader(33L, "Name", "Surname",  LocalDate.of(2021,9,12), LocalDate.of(2021,10,11), "email", "address", 123456789, ReaderStatus.ACTIVE);
+        Book book = new Book(4L, "Title3", "Name3", "Surname3", 1993, "signature3", BookStatus.AVAILABLE);
+        Reader reader = new Reader(10L, "Name2", "Surname2",  LocalDate.of(2021,9,12), null, "email2", "address2", 223456789, ReaderStatus.ACTIVE);
         Borrowing borrowing = new Borrowing(null, LocalDate.of(2021,9,12), LocalDate.of(2021,10,11), book, reader);
 
         //When

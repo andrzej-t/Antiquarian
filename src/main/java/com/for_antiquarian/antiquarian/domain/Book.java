@@ -25,9 +25,17 @@ public class Book {
     @NotNull
     private String title;
 
-    @Column(name = "AUTHOR")
+    @Column(name = "AUTHOR_NAME")
     @NotNull
-    private String author;
+    private String authorName;
+
+    @Column(name = "AUTHOR_SURNAME")
+    @NotNull
+    private String authorSurname;
+
+    @Column(name = "PUBLICATION_YEAR")
+    @NotNull
+    private Integer publicationYear;
 
     @Column(name = "SIGNATURE", unique = true)
     @NotNull
@@ -42,10 +50,12 @@ public class Book {
     )
     private List<Borrowing> borrowingList;
 
-    public Book(Long id, String title, String author, String signature, BookStatus bookStatus) {
+    public Book(Long id, String title, String authorName, String authorSurname, Integer publicationYear, String signature, BookStatus bookStatus) {
         this.id = id;
         this.title = title;
-        this.author = author;
+        this.authorName = authorName;
+        this.authorSurname = authorSurname;
+        this.publicationYear = publicationYear;
         this.signature = signature;
         this.bookStatus = bookStatus;
     }

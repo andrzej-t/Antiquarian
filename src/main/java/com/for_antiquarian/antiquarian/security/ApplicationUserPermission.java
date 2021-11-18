@@ -7,11 +7,10 @@ import lombok.Getter;
 @Getter
 public enum ApplicationUserPermission {
 
-    BORROW_BOOK("book:borrow"),
     SHOW_ALL_BOOKS("book:showAll"),
-    RETURN_BOOK("book:return"),
-    CREATE_LIBRARIAN_ACCOUNT("librarianAccount:create"),
-    BLOCK_LIBRARIAN_ACCOUNT("librarianAccount:block");
+    SHOW_BOOK_BY_ID("book:showBookById"),
+    SHOW_BOOK_BY_TITLE("book:showBookByTitle"),
+    SHOW_BOOK_BY_AUTHOR("book:showBookByAuthor");
 
     private final String permission;
 
