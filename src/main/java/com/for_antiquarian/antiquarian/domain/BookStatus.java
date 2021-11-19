@@ -5,6 +5,7 @@ public enum BookStatus {
     AVAILABLE,
     BORROWED,
     BROKEN,
-    LOST
+    LOST,
+    WITHDRAWN
 }
 

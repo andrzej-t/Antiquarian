@@ -50,5 +50,11 @@ public class BookController {
         return bookFacade.showBookBySignature(signature);
     }
 
+    @PutMapping(value = "/changeStatus")
+    @PreAuthorize("hasAnyAuthority('book:actualizeStatus')")
+    public void changeStatus(@RequestBody BookDto bookDto) {
+        bookFacade.updateStatus(bookDto);
+    }
+
 }
 

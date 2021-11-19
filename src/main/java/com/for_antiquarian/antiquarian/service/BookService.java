@@ -9,6 +9,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -24,13 +25,28 @@ public class BookService {
     @Autowired
     BookMapper bookMapper;
 
-    public List<BookDto> findAllBooks() { return bookMapper.mapToBookDtoList(bookRepository.findAll()); }
+    public List<BookDto> findAllBooks() {
+        return bookMapper.mapToBookDtoList(bookRepository.findAll());
+    }
 
-    public Optional<Book> findBookById(Long id) { return bookRepository.findById(id); }
+    public Optional<Book> findBookById(Long id) {
+        return bookRepository.findById(id);
+    }
 
-    public List<BookDto> findBookByTitle(String title) { return bookMapper.mapToBookDtoList(bookRepository.findAllByTitle(title)); }
+    public List<BookDto> findBookByTitle(String title) {
+        return bookMapper.mapToBookDtoList(bookRepository.findAllByTitle(title));
+    }
 
-    public List<BookDto> findBookByAuthorSurname(String authorSurname) { return bookMapper.mapToBookDtoList(bookRepository.findAllByAuthorSurname(authorSurname)); }
+    public List<BookDto> findBookByAuthorSurname(String authorSurname) {
+        return bookMapper.mapToBookDtoList(bookRepository.findAllByAuthorSurname(authorSurname));
+    }
 
-    public Optional<Book> findBookBySignature(String signature) { return bookRepository.findBySignature(signature); }
+    public Optional<Book> findBookBySignature(String signature) {
+        return bookRepository.findBySignature(signature);
+    }
+
+    @Transactional
+    public void actualizeStatus(BookDto bookDto) {
+        bookRepository.findById(bookDto.getId()).get().setBookStatus(bookDto.getBookStatus());
+    }
 }

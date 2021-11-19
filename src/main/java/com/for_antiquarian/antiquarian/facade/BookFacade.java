@@ -44,5 +44,9 @@ public class BookFacade {
     public Optional<Book> showBookBySignature(String signature) {
         return bookService.findBookBySignature(signature);
     }
+
+    public void updateStatus(BookDto bookDto) {
+        bookService.actualizeStatus(bookDto);
+    }
 }
 
