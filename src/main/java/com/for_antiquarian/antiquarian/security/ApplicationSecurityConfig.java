@@ -23,7 +23,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) { this.passwordEncoder = passwordEncoder; }
+    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -68,3 +70,4 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         );
     }
 }
+

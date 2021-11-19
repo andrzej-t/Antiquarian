@@ -1,7 +1,9 @@
 package com.for_antiquarian.antiquarian.domain;
 
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -46,3 +48,4 @@ public class Librarian {
     @Column(name = "WORKER_TO")
     private LocalDate workerTo;
 }
+

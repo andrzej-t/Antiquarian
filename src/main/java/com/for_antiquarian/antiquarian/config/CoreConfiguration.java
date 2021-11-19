@@ -13,3 +13,4 @@ public class CoreConfiguration {
         return new RestTemplate();
     }
 }
+

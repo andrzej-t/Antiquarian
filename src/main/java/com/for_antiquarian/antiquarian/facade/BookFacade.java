@@ -25,14 +25,24 @@ public class BookFacade {
     @Autowired
     BookMapper bookMapper;
 
-    public List<BookDto> showAllBooks() { return bookService.findAllBooks(); }
+    public List<BookDto> showAllBooks() {
+        return bookService.findAllBooks();
+    }
 
-    public Optional<Book> showBookById(Long id) { return bookService.findBookById(id); }
+    public Optional<Book> showBookById(Long id) {
+        return bookService.findBookById(id);
+    }
 
-    public List<BookDto> showBookByTitle(String title) { return bookService.findBookByTitle(title); }
+    public List<BookDto> showBookByTitle(String title) {
+        return bookService.findBookByTitle(title);
+    }
 
-    public List<BookDto> showBookByAuthorSurname(String authorSurname) { return bookService.findBookByAuthorSurname(authorSurname); }
+    public List<BookDto> showBookByAuthorSurname(String authorSurname) {
+        return bookService.findBookByAuthorSurname(authorSurname);
+    }
 
-    public Optional<Book> showBookBySignature(String signature) { return bookService.findBookBySignature(signature); }
-
+    public Optional<Book> showBookBySignature(String signature) {
+        return bookService.findBookBySignature(signature);
+    }
 }
+

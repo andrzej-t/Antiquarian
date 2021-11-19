@@ -1,8 +1,8 @@
-package com.for_antiquarian.antiquarian.service;
+package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.BorrowingDto;
 import com.for_antiquarian.antiquarian.mapper.BorrowingMapper;
-import com.for_antiquarian.antiquarian.repository.BorrowingRepository;
+import com.for_antiquarian.antiquarian.service.BorrowingService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,15 +15,16 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Component
-public class BorrowingService {
+public class BorrowingFacade {
 
     @Autowired
-    BorrowingRepository borrowingRepository;
+    BorrowingService borrowingService;
+
     @Autowired
     BorrowingMapper borrowingMapper;
 
-    public List<BorrowingDto> findAllBorrowings() {
-        return borrowingMapper.mapToBorrowingDtoList(borrowingRepository.findAll());
+    public List<BorrowingDto> showAllBorrowings() {
+        return borrowingService.findAllBorrowings();
     }
 }
 

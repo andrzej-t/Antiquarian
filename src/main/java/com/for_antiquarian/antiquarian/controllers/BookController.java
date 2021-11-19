@@ -22,22 +22,33 @@ public class BookController {
 
     @GetMapping(value = "/all")
     @PreAuthorize("hasAnyAuthority('book:showAll')")
-    public List<BookDto> getAllBooks() { return bookFacade.showAllBooks(); }
+    public List<BookDto> getAllBooks() {
+        return bookFacade.showAllBooks();
+    }
 
     @GetMapping(value = "/{id}")
     @PreAuthorize("hasAnyAuthority('book:showBookById')")
-    public Optional<Book> getBookById(@PathVariable Long id) { return bookFacade.showBookById(id); }
+    public Optional<Book> getBookById(@PathVariable Long id) {
+        return bookFacade.showBookById(id);
+    }
 
     @GetMapping(value = "/title")
     @PreAuthorize("hasAnyAuthority('book:showBookByTitle')")
-    public List<BookDto> getBookByTitle(@RequestParam("title") String title) { return bookFacade.showBookByTitle(title); }
+    public List<BookDto> getBookByTitle(@RequestParam("title") String title) {
+        return bookFacade.showBookByTitle(title);
+    }
 
     @GetMapping(value = "/author")
     @PreAuthorize("hasAnyAuthority('book:showBookByAuthor')")
-    public List<BookDto> getBookByAuthorSurname(@RequestParam String authorSurname) { return bookFacade.showBookByAuthorSurname(authorSurname); }
+    public List<BookDto> getBookByAuthorSurname(@RequestParam String authorSurname) {
+        return bookFacade.showBookByAuthorSurname(authorSurname);
+    }
 
     @GetMapping(value = "/signature")
     @PreAuthorize("hasAnyAuthority('book:showBookBySignature')")
-    public Optional<Book> getBookBySignature(@RequestParam String signature) { return bookFacade.showBookBySignature(signature); }
+    public Optional<Book> getBookBySignature(@RequestParam String signature) {
+        return bookFacade.showBookBySignature(signature);
+    }
 
 }
+

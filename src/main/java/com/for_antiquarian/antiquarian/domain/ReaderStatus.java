@@ -6,3 +6,4 @@ public enum ReaderStatus {
     BLOCKED,
     SIGNED_OUT
 }
+

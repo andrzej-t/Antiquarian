@@ -44,3 +44,4 @@ public class ReaderMapper {
                 .collect(Collectors.toList());
     }
 }
+
