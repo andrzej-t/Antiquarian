@@ -1,8 +1,8 @@
-package com.for_antiquarian.antiquarian.service;
+package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.ReaderDto;
 import com.for_antiquarian.antiquarian.mapper.ReaderMapper;
-import com.for_antiquarian.antiquarian.repository.ReaderRepository;
+import com.for_antiquarian.antiquarian.service.ReaderService;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,15 +15,15 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Component
-public class ReaderService {
+public class ReaderFacade {
 
     @Autowired
-    ReaderRepository readerRepository;
+    ReaderService readerService;
+
     @Autowired
     ReaderMapper readerMapper;
 
-    public List<ReaderDto> findAllReaders() {
-        return readerMapper.mapToReaderDtoList(readerRepository.findAll());
+    public List<ReaderDto> showAllReaders() {
+        return readerService.findAllReaders();
     }
 }
-

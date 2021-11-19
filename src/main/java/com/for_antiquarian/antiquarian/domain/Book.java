@@ -1,7 +1,9 @@
 package com.for_antiquarian.antiquarian.domain;
 
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
@@ -45,9 +47,7 @@ public class Book {
     @NotNull
     private BookStatus bookStatus;
 
-    @OneToMany(
-            mappedBy = "book"
-    )
+    @OneToMany(mappedBy = "book")
     private List<Borrowing> borrowingList;
 
     public Book(Long id, String title, String authorName, String authorSurname, Integer publicationYear, String signature, BookStatus bookStatus) {

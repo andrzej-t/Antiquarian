@@ -11,8 +11,9 @@ public enum ApplicationUserPermission {
     SHOW_BOOK_BY_ID("book:showBookById"),
     SHOW_BOOK_BY_TITLE("book:showBookByTitle"),
     SHOW_BOOK_BY_AUTHOR("book:showBookByAuthor"),
-    SHOW_BOOK_BY_SIGNATURE("book:showBookBySignature");
+    SHOW_BOOK_BY_SIGNATURE("book:showBookBySignature"),
+    SHOW_ALL_READERS("reader:showAll");
 
     private final String permission;
-
 }
+

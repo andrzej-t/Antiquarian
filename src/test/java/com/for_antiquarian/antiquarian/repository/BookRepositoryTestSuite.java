@@ -19,13 +19,15 @@ public class BookRepositoryTestSuite {
     public void testBookRepositorySave() {
 
         //Given
-        Book book = new Book(null, "Title4", "Name4", "Surname4", 1993, "signature5", BookStatus.AVAILABLE);
+        Book book1 = new Book(null, "Title1", "Name1", "Surname1", 1993, "signature126432", BookStatus.AVAILABLE);
+//        Book book2 = new Book(null, "Title2", "Name2", "Surname2", 1993, "signature2", BookStatus.AVAILABLE);
 
         //When
-        bookRepository.save(book);
+        bookRepository.save(book1);
+//        bookRepository.save(book2);
 
         //Then
-        Long id = book.getId();
+        Long id = book1.getId();
         Optional<Book> findBook = bookRepository.findById(id);
         assertTrue(findBook.isPresent());
 

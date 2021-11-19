@@ -28,11 +28,11 @@ public class Borrowing {
     @Column(name = "RETURN_DATE")
     private LocalDate returnDate;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonBackReference
     private Book book;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JsonBackReference
     private Reader reader;
 
