@@ -48,5 +48,9 @@ public class BookFacade {
     public void updateStatus(BookDto bookDto) {
         bookService.actualizeStatus(bookDto);
     }
+
+    public void addNewBook(BookDto bookDto) {
+        bookService.insertNewBook(bookDto);
+    }
 }
 

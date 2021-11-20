@@ -12,6 +12,7 @@ public enum ApplicationUserPermission {
     SHOW_BOOK_BY_TITLE("book:showBookByTitle"),
     SHOW_BOOK_BY_AUTHOR("book:showBookByAuthor"),
     SHOW_BOOK_BY_SIGNATURE("book:showBookBySignature"),
+    ADD_NEW_BOOK("book:add"),
     ACTUALIZE_BOOK_STATUS("book:actualizeStatus"),
     SHOW_ALL_READERS("reader:showAll"),
     SHOW_ALL_BORROWINGS("borrowing:showAll");
