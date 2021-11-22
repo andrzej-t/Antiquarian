@@ -56,6 +56,12 @@ public class BookController {
         bookFacade.updateStatus(bookDto);
     }
 
+    @PutMapping(value = "/changeSignature")
+    @PreAuthorize("hasAnyAuthority('book:actualizeSignature')")
+    public void updateSignature(@RequestBody BookDto bookDto) {
+        bookFacade.updateSignature(bookDto);
+    }
+
     @PostMapping(value = "/add")
     @PreAuthorize("hasAnyAuthority('book:add')")
     public void addBook(@RequestBody BookDto bookDto) {
