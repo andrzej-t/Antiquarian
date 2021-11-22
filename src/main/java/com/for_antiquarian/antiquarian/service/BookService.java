@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("OptionalGetWithoutIsPresent")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -68,6 +69,11 @@ public class BookService {
             bookRepository.findById(bookDto.getId()).get().setBookStatus(bookDto.getBookStatus());
         }
 
+    }
+
+    @Transactional
+    public void actualizeSignature(BookDto bookDto) {
+        bookRepository.findById(bookDto.getId()).get().setSignature(bookDto.getSignature());
     }
 
     @Transactional

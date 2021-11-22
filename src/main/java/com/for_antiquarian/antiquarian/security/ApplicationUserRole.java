@@ -13,8 +13,9 @@ import static com.for_antiquarian.antiquarian.security.ApplicationUserPermission
 public enum ApplicationUserRole {
     READER(Sets.newHashSet()),
     LIBRARIAN(Sets.newHashSet(SHOW_ALL_BOOKS, SHOW_BOOK_BY_ID, SHOW_BOOK_BY_TITLE, SHOW_BOOK_BY_AUTHOR, SHOW_BOOK_BY_SIGNATURE, SHOW_ALL_READERS, SHOW_ALL_BORROWINGS, ACTUALIZE_BOOK_STATUS,
-            ADD_NEW_BOOK)),
-    ADMIN(Sets.newHashSet(LIBRARIAN.permissions));
+            ADD_NEW_BOOK, ACTUALIZE_BOOK_SIGNATURE)),
+    ADMIN(Sets.newHashSet(SHOW_ALL_BOOKS, SHOW_BOOK_BY_ID, SHOW_BOOK_BY_TITLE, SHOW_BOOK_BY_AUTHOR, SHOW_BOOK_BY_SIGNATURE, SHOW_ALL_READERS, SHOW_ALL_BORROWINGS, ACTUALIZE_BOOK_STATUS,
+            ADD_NEW_BOOK, ACTUALIZE_BOOK_SIGNATURE));
 
     ApplicationUserRole(Set<ApplicationUserPermission> permissions) {
         this.permissions = permissions;

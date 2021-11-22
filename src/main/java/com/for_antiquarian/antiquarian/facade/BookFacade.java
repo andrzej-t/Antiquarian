@@ -49,6 +49,10 @@ public class BookFacade {
         bookService.actualizeStatus(bookDto);
     }
 
+    public void updateSignature(BookDto bookDto) {
+        bookService.actualizeSignature(bookDto);
+    }
+
     public void addNewBook(BookDto bookDto) {
         bookService.insertNewBook(bookDto);
     }
