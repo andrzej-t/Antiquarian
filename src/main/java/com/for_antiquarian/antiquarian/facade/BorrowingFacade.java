@@ -26,5 +26,9 @@ public class BorrowingFacade {
     public List<BorrowingDto> showAllBorrowings() {
         return borrowingService.findAllBorrowings();
     }
+
+    public void addNewBorrowing(BorrowingDto borrowingDto) {
+        borrowingService.insertNewBorrowing(borrowingDto);
+    }
 }
 

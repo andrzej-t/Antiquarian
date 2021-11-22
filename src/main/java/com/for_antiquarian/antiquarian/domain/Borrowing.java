@@ -41,11 +41,11 @@ public class Borrowing {
     private LocalDate returnDate;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "book-reference")
     private Book book;
 
     @ManyToOne
-    @JsonBackReference
+    @JsonBackReference(value = "reader-reference")
     private Reader reader;
 
 }
