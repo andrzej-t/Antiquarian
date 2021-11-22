@@ -1,5 +1,6 @@
 package com.for_antiquarian.antiquarian.facade;
 
+import com.for_antiquarian.antiquarian.domain.Reader;
 import com.for_antiquarian.antiquarian.domain.ReaderDto;
 import com.for_antiquarian.antiquarian.mapper.ReaderMapper;
 import com.for_antiquarian.antiquarian.service.ReaderService;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -23,8 +25,17 @@ public class ReaderFacade {
     @Autowired
     ReaderMapper readerMapper;
 
-    public List<ReaderDto> showAllReaders() { return readerService.findAllReaders(); }
+    public List<ReaderDto> showAllReaders() {
+        return readerService.findAllReaders();
+    }
 
-    public List<ReaderDto> showReaderBySurname(String readerSurname) { return readerService.getReaderBySurname(readerSurname);}
+    public List<ReaderDto> showReaderBySurname(String readerSurname) {
+        return readerService.getReaderBySurname(readerSurname);
+    }
+
+    public Optional<Reader> showReaderById(Long id) {
+        return readerService.getReaderById(id);
+    }
+
 }
 

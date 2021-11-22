@@ -1,5 +1,6 @@
 package com.for_antiquarian.antiquarian.controllers;
 
+import com.for_antiquarian.antiquarian.domain.Reader;
 import com.for_antiquarian.antiquarian.domain.ReaderDto;
 import com.for_antiquarian.antiquarian.facade.ReaderFacade;
 import lombok.RequiredArgsConstructor;
@@ -8,6 +9,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -28,6 +30,12 @@ public class ReaderController {
     @PreAuthorize("hasAnyAuthority('reader:findBySurname')")
     public List<ReaderDto> findReaderBySurname(@RequestParam String readerSurname) {
         return readerFacade.showReaderBySurname(readerSurname);
+    }
+
+    @GetMapping(value = "/{id}")
+    @PreAuthorize("hasAnyAuthority('reader:findById')")
+    public Optional<Reader> findReaderById(@PathVariable Long id) {
+        return readerFacade.showReaderById(id);
     }
 }
 

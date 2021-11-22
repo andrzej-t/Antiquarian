@@ -68,7 +68,5 @@ public class BookController {
         bookFacade.addNewBook(bookDto);
     }
 
-    //Test1
-
 }
 

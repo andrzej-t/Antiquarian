@@ -17,7 +17,8 @@ public enum ApplicationUserPermission {
     ACTUALIZE_BOOK_SIGNATURE("book:actualizeSignature"),
     SHOW_ALL_READERS("reader:showAll"),
     SHOW_ALL_BORROWINGS("borrowing:showAll"),
-    FIND_READER_BY_SURNAME("reader:findBySurname");
+    FIND_READER_BY_SURNAME("reader:findBySurname"),
+    FIND_READER_BY_ID("reader:findById");
 
     private final String permission;
 }
