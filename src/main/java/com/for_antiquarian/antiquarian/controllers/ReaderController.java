@@ -5,10 +5,7 @@ import com.for_antiquarian.antiquarian.facade.ReaderFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,6 +22,12 @@ public class ReaderController {
     @PreAuthorize("hasAnyAuthority('reader:showAll')")
     public List<ReaderDto> getAllReaders() {
         return readerFacade.showAllReaders();
+    }
+
+    @GetMapping(value = "/surname")
+    @PreAuthorize("hasAnyAuthority('reader:findBySurname')")
+    public List<ReaderDto> findReaderBySurname(@RequestParam String readerSurname) {
+        return readerFacade.showReaderBySurname(readerSurname);
     }
 }
 

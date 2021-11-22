@@ -22,8 +22,8 @@ public class ReaderService {
     @Autowired
     ReaderMapper readerMapper;
 
-    public List<ReaderDto> findAllReaders() {
-        return readerMapper.mapToReaderDtoList(readerRepository.findAll());
-    }
+    public List<ReaderDto> findAllReaders() { return readerMapper.mapToReaderDtoList(readerRepository.findAll()); }
+
+    public List<ReaderDto> getReaderBySurname(String readerSurname) { return readerMapper.mapToReaderDtoList(readerRepository.findAllByReaderSurname(readerSurname)); }
 }
 

@@ -13,5 +13,7 @@ public interface ReaderRepository extends CrudRepository<Reader, Long> {
 
     @Override
     List<Reader> findAll();
+
+    List<Reader> findAllByReaderSurname(String authorSurname);
 }
 

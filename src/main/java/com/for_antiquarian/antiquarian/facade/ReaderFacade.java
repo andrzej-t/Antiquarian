@@ -23,8 +23,8 @@ public class ReaderFacade {
     @Autowired
     ReaderMapper readerMapper;
 
-    public List<ReaderDto> showAllReaders() {
-        return readerService.findAllReaders();
-    }
+    public List<ReaderDto> showAllReaders() { return readerService.findAllReaders(); }
+
+    public List<ReaderDto> showReaderBySurname(String readerSurname) { return readerService.getReaderBySurname(readerSurname);}
 }
 
