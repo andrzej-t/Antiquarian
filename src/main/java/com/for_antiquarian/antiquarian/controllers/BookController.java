@@ -56,6 +56,12 @@ public class BookController {
         bookFacade.updateStatus(bookDto);
     }
 
+//    @PutMapping(value = "/changeStatus")
+//    @PreAuthorize("hasAnyAuthority('book:actualizeStatus')")
+//    public void changeStatus(@RequestBody BookDto bookDto) {
+//        bookFacade.updateStatus(bookDto);
+//    }
+
     @PostMapping(value = "/add")
     @PreAuthorize("hasAnyAuthority('book:add')")
     public void addBook(@RequestBody BookDto bookDto) {
