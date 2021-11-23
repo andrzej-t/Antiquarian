@@ -19,8 +19,10 @@ public enum ApplicationUserPermission {
     SHOW_ALL_BORROWINGS("borrowing:showAll"),
     FIND_READER_BY_SURNAME("reader:findBySurname"),
     FIND_READER_BY_ID("reader:findById"),
-    ADD_BORROWING("borrowing:add");
+    ADD_BORROWING("borrowing:add"),
+    FIND_BORROWING_BY_READER_ID("borrowing:findByReaderId");
 
     private final String permission;
+
 }
 

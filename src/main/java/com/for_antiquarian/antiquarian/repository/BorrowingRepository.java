@@ -26,5 +26,8 @@ public interface BorrowingRepository extends CrudRepository<Borrowing, Long> {
     @Query
     void setBorrowDate(@Param("DATE") LocalDate dateOfBorrowing, @Param("FETCHED_ID") Long fetchedId);
 
+    @Query
+    List<Borrowing> findByReaderId(@Param("READER_ID") Long id);
+
 }
 

@@ -23,12 +23,13 @@ public class BorrowingFacade {
     @Autowired
     BorrowingMapper borrowingMapper;
 
-    public List<BorrowingDto> showAllBorrowings() {
-        return borrowingService.findAllBorrowings();
-    }
+    public List<BorrowingDto> showAllBorrowings() { return borrowingService.findAllBorrowings(); }
 
     public void addNewBorrowing(BorrowingDto borrowingDto) {
         borrowingService.insertNewBorrowing(borrowingDto);
     }
+
+    public List<BorrowingDto> showBorrowingsByReaderId(Long id) { return borrowingService.getBorrowingsByReaderId(id); }
+
 }
 

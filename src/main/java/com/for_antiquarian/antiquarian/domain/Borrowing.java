@@ -20,6 +20,11 @@ import java.time.LocalDate;
         query = "update Borrowing set borrowDate = :DATE where book.id = :FETCHED_ID and borrowDate = null"
 )
 
+@org.hibernate.annotations.NamedQuery(
+        name = "Borrowing.findByReaderId",
+        query = "from Borrowing where reader.id = :READER_ID"
+)
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -49,3 +54,4 @@ public class Borrowing {
     private Reader reader;
 
 }
+

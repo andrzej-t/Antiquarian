@@ -30,5 +30,12 @@ public class BorrowingController {
     public void addBorrowing(@RequestBody BorrowingDto borrowingDto) {
         borrowingFacade.addNewBorrowing(borrowingDto);
     }
+
+    @GetMapping(value = "/readerId/{id}")
+    @PreAuthorize("hasAnyAuthority('borrowing:findByReaderId')")
+    public List<BorrowingDto> findBorrowingsByReaderId(@PathVariable Long id) {
+        return borrowingFacade.showBorrowingsByReaderId(id);
+    }
+
 }
 
