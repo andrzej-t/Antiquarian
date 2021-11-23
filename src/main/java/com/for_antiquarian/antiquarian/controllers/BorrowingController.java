@@ -1,10 +1,10 @@
 package com.for_antiquarian.antiquarian.controllers;
 
 import com.for_antiquarian.antiquarian.domain.BorrowingDto;
+import com.for_antiquarian.antiquarian.exception.IdNotFoundException;
 import com.for_antiquarian.antiquarian.facade.BorrowingFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,10 +25,15 @@ public class BorrowingController {
         return borrowingFacade.showAllBorrowings();
     }
 
-    @PostMapping(value = "/add", consumes = MediaType.APPLICATION_JSON_VALUE)
+    @PostMapping(value = "/add")
     @PreAuthorize("hasAnyAuthority('borrowing:add')")
-    public void addBorrowing(@RequestBody BorrowingDto borrowingDto) {
-        borrowingFacade.addNewBorrowing(borrowingDto);
+    public void addBorrowing(@RequestParam Long bookId, @RequestParam Long readerId) {
+        try {
+            borrowingFacade.addNewBorrowing(bookId, readerId);
+        } catch (IdNotFoundException e) {
+            System.out.println("There is no book or reader with this \"id\"");
+        }
+
     }
 
     @GetMapping(value = "/readerId/{id}")

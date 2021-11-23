@@ -65,7 +65,11 @@ public class BookController {
     @PostMapping(value = "/add")
     @PreAuthorize("hasAnyAuthority('book:add')")
     public void addBook(@RequestBody BookDto bookDto) {
-        bookFacade.addNewBook(bookDto);
+        try {
+            bookFacade.addNewBook(bookDto);
+        } catch (Exception e) {
+            System.out.println("Book with this \"id\" already exists in the database");
+        }
     }
 
 }

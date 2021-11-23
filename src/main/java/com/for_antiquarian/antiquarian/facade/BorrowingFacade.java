@@ -1,6 +1,7 @@
 package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.BorrowingDto;
+import com.for_antiquarian.antiquarian.exception.IdNotFoundException;
 import com.for_antiquarian.antiquarian.mapper.BorrowingMapper;
 import com.for_antiquarian.antiquarian.service.BorrowingService;
 import lombok.AllArgsConstructor;
@@ -23,13 +24,17 @@ public class BorrowingFacade {
     @Autowired
     BorrowingMapper borrowingMapper;
 
-    public List<BorrowingDto> showAllBorrowings() { return borrowingService.findAllBorrowings(); }
-
-    public void addNewBorrowing(BorrowingDto borrowingDto) {
-        borrowingService.insertNewBorrowing(borrowingDto);
+    public List<BorrowingDto> showAllBorrowings() {
+        return borrowingService.findAllBorrowings();
     }
 
-    public List<BorrowingDto> showBorrowingsByReaderId(Long id) { return borrowingService.getBorrowingsByReaderId(id); }
+    public void addNewBorrowing(Long bookId, Long readerId) throws IdNotFoundException {
+        borrowingService.insertNewBorrowing(bookId, readerId);
+    }
+
+    public List<BorrowingDto> showBorrowingsByReaderId(Long id) {
+        return borrowingService.getBorrowingsByReaderId(id);
+    }
 
 }
 
