@@ -1,6 +1,8 @@
 package com.for_antiquarian.antiquarian.mapper;
 
-import com.for_antiquarian.antiquarian.domain.*;
+import com.for_antiquarian.antiquarian.domain.Reader;
+import com.for_antiquarian.antiquarian.domain.ReaderDto;
+import com.for_antiquarian.antiquarian.domain.ReaderStatus;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

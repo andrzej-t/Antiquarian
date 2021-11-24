@@ -25,8 +25,8 @@ public class BorrowingRepositoryTestSuite {
 
         //Given
         Book book = new Book(null, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
-        Reader reader = new Reader(null, "Name1", "Surname1",  LocalDate.of(2021,1,1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);
-        Borrowing borrowing = new Borrowing(null, LocalDate.of(2021,1,1), null, book, reader);
+        Reader reader = new Reader(null, "Name1", "Surname1", LocalDate.of(2021, 1, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);
+        Borrowing borrowing = new Borrowing(null, LocalDate.of(2021, 1, 1), null, book, reader);
 
         //When
         bookRepository.save(book);

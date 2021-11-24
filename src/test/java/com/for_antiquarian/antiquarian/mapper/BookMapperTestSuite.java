@@ -4,12 +4,13 @@ import com.for_antiquarian.antiquarian.domain.Book;
 import com.for_antiquarian.antiquarian.domain.BookDto;
 import com.for_antiquarian.antiquarian.domain.BookStatus;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class BookMapperTestSuite {

@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 
@@ -20,11 +21,13 @@ import static com.for_antiquarian.antiquarian.security.ApplicationUserRole.*;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder passwordEncoder;
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder(10);
+    }
 
     @Autowired
-    public ApplicationSecurityConfig(PasswordEncoder passwordEncoder) {
-        this.passwordEncoder = passwordEncoder;
+    public ApplicationSecurityConfig() {
     }
 
     @Override
@@ -47,19 +50,19 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
         UserDetails user1 = User.builder()
                 .username("Jan Kowalski")
-                .password(passwordEncoder.encode("password1"))
+                .password(passwordEncoder().encode("password1"))
                 .authorities(READER.getGrantedAuthorities())
                 .build();
 
         UserDetails user2 = User.builder()
                 .username("Adam Nowak")
-                .password(passwordEncoder.encode("password2"))
+                .password(passwordEncoder().encode("password2"))
                 .authorities(LIBRARIAN.getGrantedAuthorities())
                 .build();
 
         UserDetails user3 = User.builder()
                 .username("Katarzyna Nowacka")
-                .password(passwordEncoder.encode("password3"))
+                .password(passwordEncoder().encode("password3"))
                 .authorities(ADMIN.getGrantedAuthorities())
                 .build();
 
@@ -69,5 +72,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 user3
         );
     }
+
 }
 
