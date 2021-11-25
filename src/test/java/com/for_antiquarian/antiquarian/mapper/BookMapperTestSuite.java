@@ -19,7 +19,7 @@ public class BookMapperTestSuite {
     BookMapper bookMapper;
 
     @Test
-    public void testMapToBook() {
+    void testMapToBook() {
         //Given
         BookDto bookDto = new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
 
@@ -37,7 +37,7 @@ public class BookMapperTestSuite {
     }
 
     @Test
-    public void testMapToBookDto() {
+    void testMapToBookDto() {
         //Given
         Book book = new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
 
@@ -55,7 +55,7 @@ public class BookMapperTestSuite {
     }
 
     @Test
-    public void testMapToBookDtoList() {
+    void testMapToBookDtoList() {
         //Given
         List<Book> bookList = new ArrayList<>();
         bookList.add(new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE));

@@ -20,7 +20,7 @@ public class ReaderMapperTestSuite {
     ReaderMapper readerMapper;
 
     @Test
-    public void testMapToReader() {
+    void testMapToReader() {
         //Given
         ReaderDto readerDto = new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE);
 
@@ -40,7 +40,7 @@ public class ReaderMapperTestSuite {
     }
 
     @Test
-    public void testMapToReaderDto() {
+    void testMapToReaderDto() {
         //Given
         Reader reader = new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE);
 
@@ -60,7 +60,7 @@ public class ReaderMapperTestSuite {
     }
 
     @Test
-    public void testMapToReaderDtoList() {
+    void testMapToReaderDtoList() {
         //Given
         List<Reader> readerList = new ArrayList<>();
         readerList.add(new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE));

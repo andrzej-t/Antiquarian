@@ -18,7 +18,7 @@ public class ReaderRepositoryTestSuite {
     ReaderRepository readerRepository;
 
     @Test
-    public void testReaderRepositorySave() {
+    void testReaderRepositorySave() {
 
         //Given
         Reader reader1 = new Reader(null, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);

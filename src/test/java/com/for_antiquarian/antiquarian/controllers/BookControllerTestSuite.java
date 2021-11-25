@@ -1,5 +1,6 @@
 package com.for_antiquarian.antiquarian.controllers;
 
+import com.for_antiquarian.antiquarian.domain.Book;
 import com.for_antiquarian.antiquarian.domain.BookDto;
 import com.for_antiquarian.antiquarian.domain.BookStatus;
 import com.for_antiquarian.antiquarian.facade.BookFacade;
@@ -15,6 +16,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -33,7 +35,7 @@ public class BookControllerTestSuite {
     private BookFacade bookFacade;
 
     @Test
-    public void testShouldGetAllBooks() throws Exception {
+    void testShouldGetAllBooks() throws Exception {
 
         //Given
         List<BookDto> bookDtoList = new ArrayList<>();
@@ -62,6 +64,114 @@ public class BookControllerTestSuite {
                 .andExpect(jsonPath("$[1].signature", is("S2")))
                 .andExpect(jsonPath("$[0].bookStatus", is("AVAILABLE")))
                 .andExpect(jsonPath("$[1].bookStatus", is("AVAILABLE")));
+    }
+
+    @Test
+    void testShouldGetBookById() throws Exception {
+
+        //Given
+        Optional<Book> book = Optional.of(new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE));
+        when(bookFacade.showBookById(1L)).thenReturn(book);
+
+        //When & Then
+        mockMvc.perform(get("/v1/book/1")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.title", is("Title1")))
+                .andExpect(jsonPath("$.authorName", is("Name1")))
+                .andExpect(jsonPath("$.authorSurname", is("Surname1")))
+                .andExpect(jsonPath("$.publicationYear", is(1991)))
+                .andExpect(jsonPath("$.signature", is("S1")))
+                .andExpect(jsonPath("$.bookStatus", is("AVAILABLE")));
+    }
+
+    @Test
+    void testShouldGetBookByTitle() throws Exception {
+
+        //Given
+        List<BookDto> bookDtoList = new ArrayList<>();
+        bookDtoList.add(new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE));
+        bookDtoList.add(new BookDto(2L, "Title1", "Name2", "Surname2", 1992, "S2", BookStatus.AVAILABLE));
+        when(bookFacade.showBookByTitle("Title1")).thenReturn(bookDtoList);
+
+        //When & Then
+        mockMvc.perform(get("/v1/book/title?title=Title1")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[0].title", is("Title1")))
+                .andExpect(jsonPath("$[1].title", is("Title1")))
+                .andExpect(jsonPath("$[0].authorName", is("Name1")))
+                .andExpect(jsonPath("$[1].authorName", is("Name2")))
+                .andExpect(jsonPath("$[0].authorSurname", is("Surname1")))
+                .andExpect(jsonPath("$[1].authorSurname", is("Surname2")))
+                .andExpect(jsonPath("$[0].publicationYear", is(1991)))
+                .andExpect(jsonPath("$[1].publicationYear", is(1992)))
+                .andExpect(jsonPath("$[0].signature", is("S1")))
+                .andExpect(jsonPath("$[1].signature", is("S2")))
+                .andExpect(jsonPath("$[0].bookStatus", is("AVAILABLE")))
+                .andExpect(jsonPath("$[1].bookStatus", is("AVAILABLE")));
+    }
+
+    @Test
+    void testShouldGetBookByAuthorSurname() throws Exception {
+
+        //Given
+        List<BookDto> bookDtoList = new ArrayList<>();
+        bookDtoList.add(new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE));
+        bookDtoList.add(new BookDto(2L, "Title2", "Name2", "Surname1", 1992, "S2", BookStatus.AVAILABLE));
+        when(bookFacade.showBookByAuthorSurname("Surname1")).thenReturn(bookDtoList);
+
+        //When & Then
+        mockMvc.perform(get("/v1/book/author?authorSurname=Surname1")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$[0].id", is(1)))
+                .andExpect(jsonPath("$[1].id", is(2)))
+                .andExpect(jsonPath("$[0].title", is("Title1")))
+                .andExpect(jsonPath("$[1].title", is("Title2")))
+                .andExpect(jsonPath("$[0].authorName", is("Name1")))
+                .andExpect(jsonPath("$[1].authorName", is("Name2")))
+                .andExpect(jsonPath("$[0].authorSurname", is("Surname1")))
+                .andExpect(jsonPath("$[1].authorSurname", is("Surname1")))
+                .andExpect(jsonPath("$[0].publicationYear", is(1991)))
+                .andExpect(jsonPath("$[1].publicationYear", is(1992)))
+                .andExpect(jsonPath("$[0].signature", is("S1")))
+                .andExpect(jsonPath("$[1].signature", is("S2")))
+                .andExpect(jsonPath("$[0].bookStatus", is("AVAILABLE")))
+                .andExpect(jsonPath("$[1].bookStatus", is("AVAILABLE")));
+    }
+
+    @Test
+    void testShouldGetBookBySignature() throws Exception {
+
+        //Given
+        Optional<Book> book = Optional.of(new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE));
+        when(bookFacade.showBookBySignature("S1")).thenReturn(book);
+
+        //When & Then
+        mockMvc.perform(get("/v1/book/signature?signature=S1")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                )
+                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(jsonPath("$.id", is(1)))
+                .andExpect(jsonPath("$.title", is("Title1")))
+                .andExpect(jsonPath("$.authorName", is("Name1")))
+                .andExpect(jsonPath("$.authorSurname", is("Surname1")))
+                .andExpect(jsonPath("$.publicationYear", is(1991)))
+                .andExpect(jsonPath("$.signature", is("S1")))
+                .andExpect(jsonPath("$.bookStatus", is("AVAILABLE")));
     }
 
 }

@@ -17,7 +17,7 @@ public class BookRepositoryTestSuite {
     private BookRepository bookRepository;
 
     @Test
-    public void testBookRepositorySave() {
+    void testBookRepositorySave() {
 
         //Given
         Book book1 = new Book(null, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);

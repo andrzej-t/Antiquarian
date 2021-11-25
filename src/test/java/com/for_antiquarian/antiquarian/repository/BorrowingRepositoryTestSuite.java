@@ -21,7 +21,7 @@ public class BorrowingRepositoryTestSuite {
     ReaderRepository readerRepository;
 
     @Test
-    public void testBorrowingRepositorySave() {
+    void testBorrowingRepositorySave() {
 
         //Given
         Book book = new Book(null, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);

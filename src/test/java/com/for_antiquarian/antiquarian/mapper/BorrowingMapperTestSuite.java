@@ -18,7 +18,7 @@ public class BorrowingMapperTestSuite {
     BorrowingMapper borrowingMapper;
 
     @Test
-    public void testMapToBorrowing() {
+    void testMapToBorrowing() {
         //Given
         Book book1 = new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
         Reader reader1 = new Reader(2L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);
@@ -36,7 +36,7 @@ public class BorrowingMapperTestSuite {
     }
 
     @Test
-    public void testMapToBorrowingDto() {
+    void testMapToBorrowingDto() {
         //Given
         Book book1 = new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
         Reader reader1 = new Reader(2L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);
@@ -54,7 +54,7 @@ public class BorrowingMapperTestSuite {
     }
 
     @Test
-    public void testMapToBorrowingDtoList() {
+    void testMapToBorrowingDtoList() {
         //Given
         List<Borrowing> borrowingList = new ArrayList<>();
 
