@@ -4,6 +4,7 @@ import com.for_antiquarian.antiquarian.domain.Book;
 import com.for_antiquarian.antiquarian.domain.BookDto;
 import com.for_antiquarian.antiquarian.domain.BookStatus;
 import com.for_antiquarian.antiquarian.facade.BookFacade;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,7 +13,6 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors;
 import org.springframework.test.context.junit.jupiter.web.SpringJUnitWebConfig;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,8 +21,9 @@ import java.util.Optional;
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringJUnitWebConfig
 @WebMvcTest(BookController.class)
@@ -48,7 +49,7 @@ public class BookControllerTestSuite {
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[1].id", is(2)))
@@ -78,7 +79,7 @@ public class BookControllerTestSuite {
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("Title1")))
                 .andExpect(jsonPath("$.authorName", is("Name1")))
@@ -102,7 +103,7 @@ public class BookControllerTestSuite {
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[1].id", is(2)))
@@ -134,7 +135,7 @@ public class BookControllerTestSuite {
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$[0].id", is(1)))
                 .andExpect(jsonPath("$[1].id", is(2)))
@@ -164,7 +165,7 @@ public class BookControllerTestSuite {
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                 )
-                .andExpect(MockMvcResultMatchers.status().is(200))
+                .andExpect(status().is(200))
                 .andExpect(jsonPath("$.id", is(1)))
                 .andExpect(jsonPath("$.title", is("Title1")))
                 .andExpect(jsonPath("$.authorName", is("Name1")))
@@ -172,6 +173,60 @@ public class BookControllerTestSuite {
                 .andExpect(jsonPath("$.publicationYear", is(1991)))
                 .andExpect(jsonPath("$.signature", is("S1")))
                 .andExpect(jsonPath("$.bookStatus", is("AVAILABLE")));
+    }
+
+    @Test
+    void testShouldUpdateStatus() throws Exception {
+
+        //Given
+        BookDto bookDto = new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(bookDto);
+
+        //When & Then
+        mockMvc.perform(put("/v1/book/changeStatus")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
+                .andExpect(status().is(200));
+    }
+
+    @Test
+    void testShouldUpdateSignature() throws Exception {
+
+        //Given
+        BookDto bookDto = new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(bookDto);
+
+        //When & Then
+        mockMvc.perform(put("/v1/book/changeSignature")
+                .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8")
+                .content(jsonContent))
+                .andExpect(status().is(200));
+    }
+
+    @Test
+    void testShouldAddBook() throws Exception {
+
+        //Given
+        BookDto bookDto = new BookDto(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
+
+        Gson gson = new Gson();
+        String jsonContent = gson.toJson(bookDto);
+
+        //When & Then
+        mockMvc.perform(post("/v1/book/add")
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
+                .andExpect(status().is(200));
     }
 
 }
