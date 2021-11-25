@@ -54,7 +54,7 @@ public class Reader {
     private ReaderStatus readerStatus;
 
     @OneToMany(mappedBy = "reader")
-    private List<Borrowing> borrowings;
+    private List<Borrowing> borrowingList;
 
     public Reader(Long id, String readerName, String readerSurname, LocalDate accountFrom, LocalDate accountTo, String readerEmail, String readerAddress, int readerPhoneNumber, ReaderStatus readerStatus) {
         this.id = id;

@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.List;
@@ -13,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Component
 @Table(name = "BOOK")
 public class Book {
 
@@ -59,5 +57,6 @@ public class Book {
         this.signature = signature;
         this.bookStatus = bookStatus;
     }
+
 }
 
