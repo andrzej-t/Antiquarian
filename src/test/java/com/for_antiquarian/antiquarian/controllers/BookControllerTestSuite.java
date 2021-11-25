@@ -204,10 +204,10 @@ public class BookControllerTestSuite {
 
         //When & Then
         mockMvc.perform(put("/v1/book/changeSignature")
-                .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
-                .contentType(MediaType.APPLICATION_JSON)
-                .characterEncoding("UTF-8")
-                .content(jsonContent))
+                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .characterEncoding("UTF-8")
+                        .content(jsonContent))
                 .andExpect(status().is(200));
     }
 
