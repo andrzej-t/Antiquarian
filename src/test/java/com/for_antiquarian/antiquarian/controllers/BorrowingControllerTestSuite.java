@@ -43,8 +43,8 @@ public class BorrowingControllerTestSuite {
         List<BorrowingDto> borrowingDtoList = new ArrayList<>();
         Book book1 = new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
         Book book2 = new Book(2L, "Title2", "Name2", "Surname2", 1991, "S2", BookStatus.AVAILABLE);
-        Reader reader1 = new Reader(3L, "Name3", "Surname3", LocalDate.of(2021, 9, 1), null, "email3", "address3", 123456789, ReaderStatus.ACTIVE);
-        Reader reader2 = new Reader(4L, "Name4", "Surname4", LocalDate.of(2021, 9, 1), null, "email4", "address4", 123456789, ReaderStatus.ACTIVE);
+        Reader reader1 = new Reader(3L, "Name3", "Surname3", LocalDate.of(2021, 9, 1), null, "email3", "address3", 123456789, Status.ACTIVE);
+        Reader reader2 = new Reader(4L, "Name4", "Surname4", LocalDate.of(2021, 9, 1), null, "email4", "address4", 123456789, Status.ACTIVE);
         borrowingDtoList.add(new BorrowingDto(5L, LocalDate.of(2021, 1, 12), LocalDate.of(2021, 1, 19), book1, reader1));
         borrowingDtoList.add(new BorrowingDto(6L, LocalDate.of(2021, 1, 12), LocalDate.of(2021, 1, 19), book2, reader2));
         when(borrowingFacade.showAllBorrowings()).thenReturn(borrowingDtoList);
@@ -84,7 +84,7 @@ public class BorrowingControllerTestSuite {
         List<BorrowingDto> borrowingDtoList = new ArrayList<>();
         Book book1 = new Book(1L, "Title1", "Name1", "Surname1", 1991, "S1", BookStatus.AVAILABLE);
         Book book2 = new Book(2L, "Title2", "Name2", "Surname2", 1991, "S2", BookStatus.AVAILABLE);
-        Reader reader1 = new Reader(3L, "Name3", "Surname3", LocalDate.of(2021, 9, 1), null, "email3", "address3", 123456789, ReaderStatus.ACTIVE);
+        Reader reader1 = new Reader(3L, "Name3", "Surname3", LocalDate.of(2021, 9, 1), null, "email3", "address3", 123456789, Status.ACTIVE);
         borrowingDtoList.add(new BorrowingDto(5L, LocalDate.of(2021, 1, 12), LocalDate.of(2021, 1, 19), book1, reader1));
         borrowingDtoList.add(new BorrowingDto(6L, LocalDate.of(2021, 1, 12), LocalDate.of(2021, 1, 19), book2, reader1));
         when(borrowingFacade.showBorrowingsByReaderId(1L)).thenReturn(borrowingDtoList);

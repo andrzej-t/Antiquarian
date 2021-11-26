@@ -53,12 +53,12 @@ public class Reader {
 
     @Column(name = "READER_STATUS")
     @NotNull
-    private ReaderStatus readerStatus;
+    private Status status;
 
     @OneToMany(mappedBy = "reader")
     private List<Borrowing> borrowingList;
 
-    public Reader(Long id, String readerName, String readerSurname, LocalDate accountFrom, LocalDate accountTo, String readerEmail, String readerAddress, int readerPhoneNumber, ReaderStatus readerStatus) {
+    public Reader(Long id, String readerName, String readerSurname, LocalDate accountFrom, LocalDate accountTo, String readerEmail, String readerAddress, int readerPhoneNumber, Status status) {
         this.id = id;
         this.readerName = readerName;
         this.readerSurname = readerSurname;
@@ -67,7 +67,7 @@ public class Reader {
         this.readerEmail = readerEmail;
         this.readerAddress = readerAddress;
         this.readerPhoneNumber = readerPhoneNumber;
-        this.readerStatus = readerStatus;
+        this.status = status;
     }
 }
 

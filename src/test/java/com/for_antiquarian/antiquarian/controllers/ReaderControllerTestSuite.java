@@ -2,7 +2,7 @@ package com.for_antiquarian.antiquarian.controllers;
 
 import com.for_antiquarian.antiquarian.domain.Reader;
 import com.for_antiquarian.antiquarian.domain.ReaderDto;
-import com.for_antiquarian.antiquarian.domain.ReaderStatus;
+import com.for_antiquarian.antiquarian.domain.Status;
 import com.for_antiquarian.antiquarian.facade.ReaderFacade;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +39,8 @@ public class ReaderControllerTestSuite {
 
         //Given
         List<ReaderDto> readerDtoList = new ArrayList<>();
-        readerDtoList.add(new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE));
-        readerDtoList.add(new ReaderDto(2L, "Name2", "Surname2", LocalDate.of(2021, 9, 2), null, "email2", "address2", 234567890, ReaderStatus.ACTIVE));
+        readerDtoList.add(new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, Status.ACTIVE));
+        readerDtoList.add(new ReaderDto(2L, "Name2", "Surname2", LocalDate.of(2021, 9, 2), null, "email2", "address2", 234567890, Status.ACTIVE));
         when(readerFacade.showAllReaders()).thenReturn(readerDtoList);
 
         //When & Then
@@ -66,8 +66,8 @@ public class ReaderControllerTestSuite {
                 .andExpect(jsonPath("$[1].readerAddress", is("address2")))
                 .andExpect(jsonPath("$[0].readerPhoneNumber", is(123456789)))
                 .andExpect(jsonPath("$[1].readerPhoneNumber", is(234567890)))
-                .andExpect(jsonPath("$[0].readerStatus", is("ACTIVE")))
-                .andExpect(jsonPath("$[1].readerStatus", is("ACTIVE")));
+                .andExpect(jsonPath("$[0].status", is("ACTIVE")))
+                .andExpect(jsonPath("$[1].status", is("ACTIVE")));
     }
 
     @Test
@@ -75,8 +75,8 @@ public class ReaderControllerTestSuite {
 
         //Given
         List<ReaderDto> readerDtoList = new ArrayList<>();
-        readerDtoList.add(new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE));
-        readerDtoList.add(new ReaderDto(2L, "Name2", "Surname1", LocalDate.of(2021, 9, 2), null, "email2", "address2", 234567890, ReaderStatus.ACTIVE));
+        readerDtoList.add(new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, Status.ACTIVE));
+        readerDtoList.add(new ReaderDto(2L, "Name2", "Surname1", LocalDate.of(2021, 9, 2), null, "email2", "address2", 234567890, Status.ACTIVE));
         when(readerFacade.showReaderBySurname("Surname1")).thenReturn(readerDtoList);
 
         //When & Then
@@ -102,15 +102,15 @@ public class ReaderControllerTestSuite {
                 .andExpect(jsonPath("$[1].readerAddress", is("address2")))
                 .andExpect(jsonPath("$[0].readerPhoneNumber", is(123456789)))
                 .andExpect(jsonPath("$[1].readerPhoneNumber", is(234567890)))
-                .andExpect(jsonPath("$[0].readerStatus", is("ACTIVE")))
-                .andExpect(jsonPath("$[1].readerStatus", is("ACTIVE")));
+                .andExpect(jsonPath("$[0].status", is("ACTIVE")))
+                .andExpect(jsonPath("$[1].status", is("ACTIVE")));
     }
 
     @Test
     void testShouldFindReaderById() throws Exception {
 
         //Given
-        Optional<Reader> reader = Optional.of(new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE));
+        Optional<Reader> reader = Optional.of(new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, Status.ACTIVE));
         when(readerFacade.showReaderById(1L)).thenReturn(reader);
 
         //When & Then
@@ -127,7 +127,7 @@ public class ReaderControllerTestSuite {
                 .andExpect(jsonPath("$.readerEmail", is("email1")))
                 .andExpect(jsonPath("$.readerAddress", is("address1")))
                 .andExpect(jsonPath("$.readerPhoneNumber", is(123456789)))
-                .andExpect(jsonPath("$.readerStatus", is("ACTIVE")));
+                .andExpect(jsonPath("$.status", is("ACTIVE")));
     }
 
 }

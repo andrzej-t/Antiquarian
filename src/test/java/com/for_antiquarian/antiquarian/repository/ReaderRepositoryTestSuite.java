@@ -1,7 +1,7 @@
 package com.for_antiquarian.antiquarian.repository;
 
 import com.for_antiquarian.antiquarian.domain.Reader;
-import com.for_antiquarian.antiquarian.domain.ReaderStatus;
+import com.for_antiquarian.antiquarian.domain.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -21,7 +21,7 @@ public class ReaderRepositoryTestSuite {
     void testReaderRepositorySave() {
 
         //Given
-        Reader reader1 = new Reader(null, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, ReaderStatus.ACTIVE);
+        Reader reader1 = new Reader(null, "Name1", "Surname1", LocalDate.of(2021, 9, 1), null, "email1", "address1", 123456789, Status.ACTIVE);
 
         //When
         readerRepository.save(reader1);

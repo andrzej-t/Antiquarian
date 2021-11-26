@@ -2,7 +2,7 @@ package com.for_antiquarian.antiquarian.mapper;
 
 import com.for_antiquarian.antiquarian.domain.Reader;
 import com.for_antiquarian.antiquarian.domain.ReaderDto;
-import com.for_antiquarian.antiquarian.domain.ReaderStatus;
+import com.for_antiquarian.antiquarian.domain.Status;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,7 +22,7 @@ public class ReaderMapperTestSuite {
     @Test
     void testMapToReader() {
         //Given
-        ReaderDto readerDto = new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE);
+        ReaderDto readerDto = new ReaderDto(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, Status.ACTIVE);
 
         //When
         Reader result = readerMapper.mapToReader(readerDto);
@@ -36,13 +36,13 @@ public class ReaderMapperTestSuite {
         assertEquals("email1", result.getReaderEmail());
         assertEquals("address1", result.getReaderAddress());
         assertEquals(123456789, result.getReaderPhoneNumber());
-        assertEquals(ReaderStatus.ACTIVE, result.getReaderStatus());
+        assertEquals(Status.ACTIVE, result.getStatus());
     }
 
     @Test
     void testMapToReaderDto() {
         //Given
-        Reader reader = new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE);
+        Reader reader = new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, Status.ACTIVE);
 
         //When
         ReaderDto result = readerMapper.mapToReaderDto(reader);
@@ -56,14 +56,14 @@ public class ReaderMapperTestSuite {
         assertEquals("email1", result.getReaderEmail());
         assertEquals("address1", result.getReaderAddress());
         assertEquals(123456789, result.getReaderPhoneNumber());
-        assertEquals(ReaderStatus.ACTIVE, result.getReaderStatus());
+        assertEquals(Status.ACTIVE, result.getStatus());
     }
 
     @Test
     void testMapToReaderDtoList() {
         //Given
         List<Reader> readerList = new ArrayList<>();
-        readerList.add(new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, ReaderStatus.ACTIVE));
+        readerList.add(new Reader(1L, "Name1", "Surname1", LocalDate.of(2021, 9, 1), LocalDate.now(), "email1", "address1", 123456789, Status.ACTIVE));
 
         //When
         List<ReaderDto> result = readerMapper.mapToReaderDtoList(readerList);
@@ -77,7 +77,7 @@ public class ReaderMapperTestSuite {
         assertEquals("email1", result.get(0).getReaderEmail());
         assertEquals("address1", result.get(0).getReaderAddress());
         assertEquals(123456789, result.get(0).getReaderPhoneNumber());
-        assertEquals(ReaderStatus.ACTIVE, result.get(0).getReaderStatus());
+        assertEquals(Status.ACTIVE, result.get(0).getStatus());
     }
 
 }

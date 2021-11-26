@@ -20,7 +20,7 @@ public class ReaderMapper {
                 readerDto.getReaderEmail(),
                 readerDto.getReaderAddress(),
                 readerDto.getReaderPhoneNumber(),
-                readerDto.getReaderStatus()
+                readerDto.getStatus()
         );
     }
 
@@ -34,7 +34,7 @@ public class ReaderMapper {
                 reader.getReaderEmail(),
                 reader.getReaderAddress(),
                 reader.getReaderPhoneNumber(),
-                reader.getReaderStatus()
+                reader.getStatus()
         );
     }
 

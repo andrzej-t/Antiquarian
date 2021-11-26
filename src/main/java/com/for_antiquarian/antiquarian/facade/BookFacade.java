@@ -50,8 +50,8 @@ public class BookFacade {
         bookService.actualizeStatus(id, bookStatus);
     }
 
-    public void updateSignature(BookDto bookDto) {
-        bookService.actualizeSignature(bookDto);
+    public void updateSignature(Long id, String signature) {
+        bookService.actualizeSignature(id, signature);
     }
 
     public void addNewBook(BookDto bookDto) {

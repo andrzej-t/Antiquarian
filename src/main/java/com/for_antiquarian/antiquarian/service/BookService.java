@@ -72,8 +72,8 @@ public class BookService {
     }
 
     @Transactional
-    public void actualizeSignature(BookDto bookDto) {
-        bookRepository.findById(bookDto.getId()).get().setSignature(bookDto.getSignature());
+    public void actualizeSignature(Long id, String signature) {
+        bookRepository.findById(id).get().setSignature(signature);
     }
 
     @Transactional

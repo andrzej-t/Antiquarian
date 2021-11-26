@@ -63,9 +63,9 @@ public class BookController {
 
     @PutMapping(value = "/changeSignature")
     @PreAuthorize("hasAnyAuthority('book:actualizeSignature')")
-    public void updateSignature(@RequestBody BookDto bookDto) {
+    public void updateSignature(@RequestParam Long id, @RequestParam String signature) {
         try {
-            bookFacade.updateSignature(bookDto);
+            bookFacade.updateSignature(id, signature);
         } catch (Exception e) {
             System.out.println("There is no book with this \"id\"");
         }

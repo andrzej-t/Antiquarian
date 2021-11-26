@@ -17,6 +17,7 @@ public class ReaderDto {
     private String readerEmail;
     private String readerAddress;
     private int readerPhoneNumber;
-    private ReaderStatus readerStatus;
+    private Status status;
+
 }
 
