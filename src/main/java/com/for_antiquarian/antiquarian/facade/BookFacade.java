@@ -2,6 +2,7 @@ package com.for_antiquarian.antiquarian.facade;
 
 import com.for_antiquarian.antiquarian.domain.Book;
 import com.for_antiquarian.antiquarian.domain.BookDto;
+import com.for_antiquarian.antiquarian.domain.BookStatus;
 import com.for_antiquarian.antiquarian.mapper.BookMapper;
 import com.for_antiquarian.antiquarian.service.BookService;
 import lombok.AllArgsConstructor;
@@ -45,8 +46,8 @@ public class BookFacade {
         return bookService.findBookBySignature(signature);
     }
 
-    public void updateStatus(BookDto bookDto) {
-        bookService.actualizeStatus(bookDto);
+    public void updateStatus(Long id, BookStatus bookStatus) {
+        bookService.actualizeStatus(id, bookStatus);
     }
 
     public void updateSignature(BookDto bookDto) {
@@ -56,5 +57,6 @@ public class BookFacade {
     public void addNewBook(BookDto bookDto) {
         bookService.insertNewBook(bookDto);
     }
+
 }
 

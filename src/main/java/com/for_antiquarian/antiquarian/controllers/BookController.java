@@ -2,6 +2,7 @@ package com.for_antiquarian.antiquarian.controllers;
 
 import com.for_antiquarian.antiquarian.domain.Book;
 import com.for_antiquarian.antiquarian.domain.BookDto;
+import com.for_antiquarian.antiquarian.domain.BookStatus;
 import com.for_antiquarian.antiquarian.facade.BookFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,14 +53,22 @@ public class BookController {
 
     @PutMapping(value = "/changeStatus")
     @PreAuthorize("hasAnyAuthority('book:actualizeStatus')")
-    public void changeStatus(@RequestBody BookDto bookDto) {
-        bookFacade.updateStatus(bookDto);
+    public void changeStatus(@RequestParam Long id, @RequestParam BookStatus bookStatus) {
+        try {
+            bookFacade.updateStatus(id, bookStatus);
+        } catch (Exception e) {
+            System.out.println("There is no book with this \"id\"");
+        }
     }
 
     @PutMapping(value = "/changeSignature")
     @PreAuthorize("hasAnyAuthority('book:actualizeSignature')")
     public void updateSignature(@RequestBody BookDto bookDto) {
-        bookFacade.updateSignature(bookDto);
+        try {
+            bookFacade.updateSignature(bookDto);
+        } catch (Exception e) {
+            System.out.println("There is no book with this \"id\"");
+        }
     }
 
     @PostMapping(value = "/add")

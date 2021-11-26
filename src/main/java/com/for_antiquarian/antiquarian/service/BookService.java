@@ -55,18 +55,18 @@ public class BookService {
     }
 
     @Transactional
-    public void actualizeStatus(BookDto bookDto) {
+    public void actualizeStatus(Long id, BookStatus bookStatus) {
 
-        if (bookRepository.findById(bookDto.getId()).get().getBookStatus().equals(BookStatus.BORROWED) && bookDto.getBookStatus().equals(BookStatus.AVAILABLE)) {
+        if (bookRepository.findById(id).get().getBookStatus().equals(BookStatus.BORROWED) && bookStatus.equals(BookStatus.AVAILABLE)) {
 
-            borrowingRepository.setReturnDate(LocalDate.now(), bookDto.getId());
-            bookRepository.findById(bookDto.getId()).get().setBookStatus(bookDto.getBookStatus());
-        } else if (bookRepository.findById(bookDto.getId()).get().getBookStatus().equals(BookStatus.AVAILABLE) && bookDto.getBookStatus().equals(BookStatus.BORROWED)) {
+            borrowingRepository.setReturnDate(LocalDate.now(), id);
+            bookRepository.findById(id).get().setBookStatus(bookStatus);
+        } else if (bookRepository.findById(id).get().getBookStatus().equals(BookStatus.AVAILABLE) && bookStatus.equals(BookStatus.BORROWED)) {
 
-            borrowingRepository.setBorrowDate(LocalDate.now(), bookDto.getId());
-            bookRepository.findById(bookDto.getId()).get().setBookStatus(bookDto.getBookStatus());
+            borrowingRepository.setBorrowDate(LocalDate.now(), id);
+            bookRepository.findById(id).get().setBookStatus(bookStatus);
         } else {
-            bookRepository.findById(bookDto.getId()).get().setBookStatus(bookDto.getBookStatus());
+            bookRepository.findById(id).get().setBookStatus(bookStatus);
         }
 
     }

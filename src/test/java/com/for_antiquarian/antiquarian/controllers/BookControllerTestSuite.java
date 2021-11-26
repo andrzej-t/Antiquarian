@@ -185,7 +185,7 @@ public class BookControllerTestSuite {
         String jsonContent = gson.toJson(bookDto);
 
         //When & Then
-        mockMvc.perform(put("/v1/book/changeStatus")
+        mockMvc.perform(put("/v1/book/changeStatus?id=1&bookStatus=LOST")
                         .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
