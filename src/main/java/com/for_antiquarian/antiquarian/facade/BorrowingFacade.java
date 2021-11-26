@@ -36,5 +36,9 @@ public class BorrowingFacade {
         return borrowingService.getBorrowingsByReaderId(id);
     }
 
+    public List<BorrowingDto> showBorrowingsByBookId(Long id) {
+        return borrowingService.getBorrowingsByBookId(id);
+    }
+
 }
 

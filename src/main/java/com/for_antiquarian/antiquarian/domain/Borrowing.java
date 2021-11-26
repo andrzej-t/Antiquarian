@@ -25,6 +25,11 @@ import java.time.LocalDate;
         query = "from Borrowing where reader.id = :READER_ID"
 )
 
+@org.hibernate.annotations.NamedQuery(
+        name = "Borrowing.findByBookId",
+        query = "from Borrowing where book.id = :BOOK_ID"
+)
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

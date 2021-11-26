@@ -60,5 +60,10 @@ public class BorrowingService {
         return borrowingMapper.mapToBorrowingDtoList(borrowingRepository.findByReaderId(id));
     }
 
+    @Transactional
+    public List<BorrowingDto> getBorrowingsByBookId(Long id) {
+        return borrowingMapper.mapToBorrowingDtoList(borrowingRepository.findByBookId(id));
+    }
+
 }
 

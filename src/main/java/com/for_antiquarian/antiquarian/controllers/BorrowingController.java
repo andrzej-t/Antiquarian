@@ -42,5 +42,11 @@ public class BorrowingController {
         return borrowingFacade.showBorrowingsByReaderId(id);
     }
 
+    @GetMapping(value = "/bookId/{id}")
+    @PreAuthorize("hasAnyAuthority('borrowing:findByReaderId')")
+    public List<BorrowingDto> findBorrowingsByBookId(@PathVariable Long id) {
+        return borrowingFacade.showBorrowingsByBookId(id);
+    }
+
 }
 

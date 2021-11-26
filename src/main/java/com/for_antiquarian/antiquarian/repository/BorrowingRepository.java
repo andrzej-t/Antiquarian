@@ -29,5 +29,8 @@ public interface BorrowingRepository extends CrudRepository<Borrowing, Long> {
     @Query
     List<Borrowing> findByReaderId(@Param("READER_ID") Long id);
 
+    @Query
+    List<Borrowing> findByBookId(@Param("BOOK_ID") Long id);
+
 }
 
