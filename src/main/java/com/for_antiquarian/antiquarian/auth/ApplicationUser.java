@@ -1,22 +1,37 @@
 package com.for_antiquarian.antiquarian.auth;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Set;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Entity
 public class ApplicationUser implements UserDetails {
 
-    private final Set<? extends GrantedAuthority> grantedAuthorities;
-    private final String password;
-    private final String username;
-    private final boolean isAccountNonExpired;
-    private final boolean isAccountNonLocked;
-    private final boolean isCredentialsNonExpired;
-    private final boolean isEnabled;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(unique = true, nullable = false)
+    Long id;
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<SimpleGrantedAuthority> grantedAuthorities;
+    private String password;
+    private String username;
+    private boolean isAccountNonExpired;
+    private boolean isAccountNonLocked;
+    private boolean isCredentialsNonExpired;
+    private boolean isEnabled;
 
-    public ApplicationUser(Set<? extends GrantedAuthority> grantedAuthorities, String password, String username, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
+    public ApplicationUser(Set<SimpleGrantedAuthority> grantedAuthorities, String password, String username, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled) {
         this.grantedAuthorities = grantedAuthorities;
         this.password = password;
         this.username = username;

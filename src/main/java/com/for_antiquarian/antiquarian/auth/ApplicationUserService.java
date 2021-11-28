@@ -13,10 +13,9 @@ public class ApplicationUserService implements UserDetailsService {
     private final ApplicationUserDao applicationUserDao;
 
     @Autowired
-    public ApplicationUserService(@Qualifier("fake") ApplicationUserDao applicationUserDao) {
+    public ApplicationUserService(@Qualifier("real") ApplicationUserDao applicationUserDao) {
         this.applicationUserDao = applicationUserDao;
     }
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

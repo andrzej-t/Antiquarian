@@ -1,6 +1,7 @@
 package com.for_antiquarian.antiquarian.security;
 
 import com.for_antiquarian.antiquarian.auth.ApplicationUserService;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +17,13 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
+@Getter
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder passwordEncoder;
+    @Autowired
+    PasswordEncoder passwordEncoder;
     private final ApplicationUserService applicationUserService;
 
     @Autowired
@@ -60,7 +63,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/login");
 
-
     }
 
     @Override
@@ -75,35 +77,6 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
         provider.setUserDetailsService(applicationUserService);
         return provider;
     }
-
-//    @Override
-//    @Bean
-//    protected UserDetailsService userDetailsService() {
-//
-//        UserDetails user1 = User.builder()
-//                .username("Jan Kowalski")
-//                .password(passwordEncoder().encode("password1"))
-//                .authorities(READER.getGrantedAuthorities())
-//                .build();
-//
-//        UserDetails user2 = User.builder()
-//                .username("Adam Nowak")
-//                .password(passwordEncoder().encode("password2"))
-//                .authorities(LIBRARIAN.getGrantedAuthorities())
-//                .build();
-//
-//        UserDetails user3 = User.builder()
-//                .username("Katarzyna Nowacka")
-//                .password(passwordEncoder().encode("password3"))
-//                .authorities(ADMIN.getGrantedAuthorities())
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(
-//                user1,
-//                user2,
-//                user3
-//        );
-//    }
 
 }
 

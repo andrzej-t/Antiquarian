@@ -1,9 +1,12 @@
 //package com.for_antiquarian.antiquarian.controllers;
 //
+//import com.for_antiquarian.antiquarian.auth.RealApplicationDaoService;
 //import com.for_antiquarian.antiquarian.domain.Reader;
 //import com.for_antiquarian.antiquarian.domain.ReaderDto;
 //import com.for_antiquarian.antiquarian.domain.Status;
 //import com.for_antiquarian.antiquarian.facade.ReaderFacade;
+//import com.for_antiquarian.antiquarian.security.ApplicationSecurityConfig;
+//import com.for_antiquarian.antiquarian.security.PasswordConfig;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -21,6 +24,7 @@
 //
 //import static org.hamcrest.Matchers.*;
 //import static org.mockito.Mockito.when;
+//import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestBuilders.formLogin;
 //import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 //import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -34,6 +38,12 @@
 //
 //    @MockBean
 //    private ReaderFacade readerFacade;
+//    @Autowired
+//    RealApplicationDaoService realApplicationDaoService;
+//    @Autowired
+//    PasswordConfig passwordConfig;
+//    @Autowired
+//    ApplicationSecurityConfig applicationSecurityConfig;
 //
 //    @Test
 //    void testShouldGetAllReaders() throws Exception {
@@ -45,10 +55,17 @@
 //        when(readerFacade.showAllReaders()).thenReturn(readerDtoList);
 //
 //        //When & Then
-//        mockMvc.perform(get("/v1/reader/all")
-//                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", "password2"))
-//                        .contentType(MediaType.APPLICATION_JSON)
+////        mockMvc.perform(get("/v1/reader/all")
+//
+//        mockMvc.perform(formLogin("/v1/reader/all").user("admin").password(applicationSecurityConfig.getPasswordEncoder().encode("admin"))
+//
+////                        .with(SecurityMockMvcRequestPostProcessors.user("admin").password(realApplicationDaoService.getPasswordEncoder().encode("admin")))
+//                .acceptMediaType(MediaType.APPLICATION_JSON)
 //                )
+//
+////                        .with(SecurityMockMvcRequestPostProcessors.httpBasic("Adam Nowak", realApplicationDaoService.getPasswordEncoder().encode("password2")))
+////                        .contentType(MediaType.APPLICATION_JSON)
+////                )
 //                .andExpect(status().is(200))
 //                .andExpect(jsonPath("$", hasSize(2)))
 //                .andExpect(jsonPath("$[0].id", is(1)))
