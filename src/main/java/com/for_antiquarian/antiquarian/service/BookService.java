@@ -76,7 +76,6 @@ public class BookService {
         bookRepository.findById(id).get().setSignature(signature);
     }
 
-    @Transactional
     public void insertNewBook(BookDto bookDto) {
         bookRepository.save(bookMapper.mapToBook(bookDto));
     }

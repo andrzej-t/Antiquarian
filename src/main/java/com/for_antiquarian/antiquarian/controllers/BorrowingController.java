@@ -19,13 +19,13 @@ public class BorrowingController {
     @Autowired
     BorrowingFacade borrowingFacade;
 
-    @GetMapping(value = "/all")
+    @RequestMapping(value = "/all", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('borrowing:showAll')")
     public List<BorrowingDto> getAllBorrowings() {
         return borrowingFacade.showAllBorrowings();
     }
 
-    @PostMapping(value = "/add")
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
     @PreAuthorize("hasAnyAuthority('borrowing:add')")
     public void addBorrowing(@RequestParam Long bookId, @RequestParam Long readerId) {
         try {
@@ -33,17 +33,16 @@ public class BorrowingController {
         } catch (IdNotFoundException e) {
             System.out.println("There is no book or reader with this \"id\"");
         }
-
     }
 
-    @GetMapping(value = "/readerId/{id}")
+    @RequestMapping(value = "/readerId/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('borrowing:findByReaderId')")
     public List<BorrowingDto> findBorrowingsByReaderId(@PathVariable Long id) {
         return borrowingFacade.showBorrowingsByReaderId(id);
     }
 
-    @GetMapping(value = "/bookId/{id}")
-    @PreAuthorize("hasAnyAuthority('borrowing:findByReaderId')")
+    @RequestMapping(value = "/bookId/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    @PreAuthorize("hasAnyAuthority('borrowing:findByBookId')")
     public List<BorrowingDto> findBorrowingsByBookId(@PathVariable Long id) {
         return borrowingFacade.showBorrowingsByBookId(id);
     }
