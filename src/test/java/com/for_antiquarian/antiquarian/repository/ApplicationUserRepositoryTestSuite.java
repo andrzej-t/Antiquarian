@@ -24,8 +24,8 @@ public class ApplicationUserRepositoryTestSuite {
 
         //Given
         ApplicationUser applicationUser1 = new ApplicationUser(null, READER.getGrantedAuthorities(), realApplicationDaoService.getPasswordEncoder().encode("reader"), "reader", true, true, true, true);
-        ApplicationUser applicationUser2 = new ApplicationUser(null, READER.getGrantedAuthorities(), realApplicationDaoService.getPasswordEncoder().encode("librarian"), "librarian", true, true, true, true);
-        ApplicationUser applicationUser3 = new ApplicationUser(null,READER.getGrantedAuthorities(), realApplicationDaoService.getPasswordEncoder().encode("admin"), "admin", true, true, true, true);
+        ApplicationUser applicationUser2 = new ApplicationUser(null, LIBRARIAN.getGrantedAuthorities(), realApplicationDaoService.getPasswordEncoder().encode("librarian"), "librarian", true, true, true, true);
+        ApplicationUser applicationUser3 = new ApplicationUser(null, ADMIN.getGrantedAuthorities(), realApplicationDaoService.getPasswordEncoder().encode("admin"), "admin", true, true, true, true);
 
         //When
         applicationUserRepository.save(applicationUser1);

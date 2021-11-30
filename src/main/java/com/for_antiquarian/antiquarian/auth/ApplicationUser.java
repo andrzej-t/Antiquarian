@@ -3,7 +3,6 @@ package com.for_antiquarian.antiquarian.auth;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -42,7 +41,7 @@ public class ApplicationUser implements UserDetails {
     }
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends SimpleGrantedAuthority> getAuthorities() {
         return grantedAuthorities;
     }
 

@@ -31,7 +31,9 @@ public class RealApplicationDaoService implements ApplicationUserDao {
                 .findFirst();
     }
 
-    private List<ApplicationUser> getApplicationUsers() { return applicationUserRepository.findAll(); }
+    private List<ApplicationUser> getApplicationUsers() {
+        return applicationUserRepository.findAll();
+    }
 
 }
 

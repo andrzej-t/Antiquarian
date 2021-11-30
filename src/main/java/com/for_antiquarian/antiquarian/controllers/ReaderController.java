@@ -20,19 +20,19 @@ public class ReaderController {
     @Autowired
     ReaderFacade readerFacade;
 
-    @GetMapping(value = "/all")
+    @RequestMapping(value = "/all", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('reader:showAll')")
     public List<ReaderDto> getAllReaders() {
         return readerFacade.showAllReaders();
     }
 
-    @GetMapping(value = "/surname")
+    @RequestMapping(value = "/surname", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('reader:findBySurname')")
     public List<ReaderDto> findReaderBySurname(@RequestParam String readerSurname) {
         return readerFacade.showReaderBySurname(readerSurname);
     }
 
-    @GetMapping(value = "/{id}")
+    @RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('reader:findById')")
     public Optional<Reader> findReaderById(@PathVariable Long id) {
         return readerFacade.showReaderById(id);
