@@ -1,4 +1,4 @@
-##ANTIQUARIAN - library management system. 
+## ANTIQUARIAN - library management system. 
 
 This is a backend project based on SpringBoot, in which I use Spring Security for authentication and authorization.  Appart from Spring security, I use Lombok and Thymeleaf libraries in it. To run download the project, run it locally on the default port (example: http://localhost:8080/login) and use test data for login. Endpoints You can test via Postman or directly in browser. For login out You can use logout button or http://localhost:8080/logout
 
