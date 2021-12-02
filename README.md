@@ -7,18 +7,18 @@ CURRENTLY, THE PROJECT IS STILL UNDER CONSTRUCTION!!!
 
 TEST DATA:
 
-* READER:
-username: reader
-password: reader
+* READER: <br />
+username: reader <br />
+password: reader <br />
 
 Example READER endpoints for testing:
 
 http://localhost:8080/v1/book/all
 
 
-* LIBRARIAN:
-username: librarian
-password: librarian
+* LIBRARIAN: <br />
+username: librarian <br />
+password: librarian <br />
 
 Example LIBRARIAN endpoints for testing:
 
@@ -36,9 +36,9 @@ http://localhost:8080/v1/borrowing/all
 http://localhost:8080/v1/borrowing/readerId/1
 http://localhost:8080/v1/borrowing/bookId/1
 
-* ADMIN:
-username: admin
-password: admin
+* ADMIN: <br />
+username: admin <br />
+password: admin <br />
 
 Example ADMIN endpoints for testing:
 
