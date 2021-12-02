@@ -22,19 +22,19 @@ password: librarian <br />
 
 Example LIBRARIAN endpoints for testing:
 
-http://localhost:8080/v1/book/all
-http://localhost:8080/v1/book/1
-http://localhost:8080/v1/book/title?title=title1
-http://localhost:8080/v1/book/author?authorSurname=author1
-http://localhost:8080/v1/book/signature?signature=signature1
-
-http://localhost:8080/v1/reader/all
-http://localhost:8080/v1/reader/surname?readerSurname=surname1
-http://localhost:8080/v1/reader/1
-
-http://localhost:8080/v1/borrowing/all
-http://localhost:8080/v1/borrowing/readerId/1
-http://localhost:8080/v1/borrowing/bookId/1
+http://localhost:8080/v1/book/all <br />
+http://localhost:8080/v1/book/1 <br />
+http://localhost:8080/v1/book/title?title=title1 <br />
+http://localhost:8080/v1/book/author?authorSurname=author1 <br />
+http://localhost:8080/v1/book/signature?signature=signature1 <br />
+<br />
+http://localhost:8080/v1/reader/all <br />
+http://localhost:8080/v1/reader/surname?readerSurname=surname1 <br />
+http://localhost:8080/v1/reader/1 <br />
+<br />
+http://localhost:8080/v1/borrowing/all <br />
+http://localhost:8080/v1/borrowing/readerId/1 <br />
+http://localhost:8080/v1/borrowing/bookId/1 <br />
 
 * ADMIN: <br />
 username: admin <br />
