@@ -7,5 +7,6 @@ public enum BookStatus {
     BROKEN,
     LOST,
     WITHDRAWN
+
 }
 

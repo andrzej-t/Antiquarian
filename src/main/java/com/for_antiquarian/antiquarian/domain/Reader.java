@@ -69,5 +69,6 @@ public class Reader {
         this.readerPhoneNumber = readerPhoneNumber;
         this.status = status;
     }
+
 }
 

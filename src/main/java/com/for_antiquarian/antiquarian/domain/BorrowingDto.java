@@ -14,4 +14,6 @@ public class BorrowingDto {
     private LocalDate returnDate;
     private Book book;
     private Reader reader;
+
 }
+

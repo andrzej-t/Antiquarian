@@ -21,39 +21,39 @@ public class BookController {
     @Autowired
     BookFacade bookFacade;
 
-    @RequestMapping(value = "/all", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
     @PreAuthorize("hasAnyAuthority('book:showAll')")
     public List<BookDto> getAllBooks() {
         return bookFacade.showAllBooks();
     }
 
-    @RequestMapping(value = "/{id}", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @PreAuthorize("hasAnyAuthority('book:showBookById')")
     public Optional<Book> getBookById(@PathVariable Long id) {
         return bookFacade.showBookById(id);
     }
 
-    @RequestMapping(value = "/title", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/title", method = RequestMethod.GET)
     @PreAuthorize("hasAnyAuthority('book:showBookByTitle')")
     public List<BookDto> getBookByTitle(@RequestParam("title") String title) {
         return bookFacade.showBookByTitle(title);
     }
 
-    @RequestMapping(value = "/author", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/author", method = RequestMethod.GET)
     @PreAuthorize("hasAnyAuthority('book:showBookByAuthor')")
     public List<BookDto> getBookByAuthorSurname(@RequestParam String authorSurname) {
         return bookFacade.showBookByAuthorSurname(authorSurname);
     }
 
-    @RequestMapping(value = "/signature", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/signature", method = RequestMethod.GET)
     @PreAuthorize("hasAnyAuthority('book:showBookBySignature')")
     public Optional<Book> getBookBySignature(@RequestParam String signature) {
         return bookFacade.showBookBySignature(signature);
     }
 
-    @RequestMapping(value = "/changeStatus", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "/changeStatus/{id}", method = {RequestMethod.PUT, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('book:actualizeStatus')")
-    public void changeStatus(@RequestParam Long id, @RequestParam BookStatus bookStatus) {
+    public void changeStatus(@PathVariable Long id, @RequestParam BookStatus bookStatus) {
         try {
             bookFacade.updateStatus(id, bookStatus);
         } catch (Exception e) {
@@ -61,9 +61,9 @@ public class BookController {
         }
     }
 
-    @RequestMapping(value = "/changeSignature", method = {RequestMethod.PUT, RequestMethod.POST})
+    @RequestMapping(value = "/changeSignature/{id}", method = {RequestMethod.PUT, RequestMethod.POST})
     @PreAuthorize("hasAnyAuthority('book:actualizeSignature')")
-    public void updateSignature(@RequestParam Long id, @RequestParam String signature) {
+    public void updateSignature(@PathVariable Long id, @RequestParam String signature) {
         try {
             bookFacade.updateSignature(id, signature);
         } catch (Exception e) {

@@ -1,6 +1,9 @@
 package com.for_antiquarian.antiquarian.security;
 
 import com.for_antiquarian.antiquarian.auth.ApplicationUserService;
+import com.for_antiquarian.antiquarian.jwt.JwtConfig;
+import com.for_antiquarian.antiquarian.jwt.JwtTokenVerifier;
+import com.for_antiquarian.antiquarian.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -12,10 +15,12 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+import javax.crypto.SecretKey;
 import java.util.concurrent.TimeUnit;
 
 @Getter
@@ -26,11 +31,15 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     PasswordEncoder passwordEncoder;
     private final ApplicationUserService applicationUserService;
+    private final SecretKey secretKey;
+    private final JwtConfig jwtConfig;
 
     @Autowired
-    public ApplicationSecurityConfig(@Lazy PasswordEncoder passwordEncoder, @Lazy ApplicationUserService applicationUserService) {
+    public ApplicationSecurityConfig(@Lazy PasswordEncoder passwordEncoder, @Lazy ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
         this.passwordEncoder = passwordEncoder;
         this.applicationUserService = applicationUserService;
+        this.secretKey = secretKey;
+        this.jwtConfig = jwtConfig;
     }
 
     @Override
@@ -39,19 +48,25 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
 //                .and()
                 .csrf().disable()
+                //4 lines below uncomment, when using JWT
+/*                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
+                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)*/
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .anyRequest()
                 .authenticated()
+
+        //Code below uncomment when using form login authentication:
                 .and()
-//                .httpBasic()
                 .formLogin()
                 .loginPage("/login").permitAll()
                 .defaultSuccessUrl("/mainView", true) //redirecting
                 .passwordParameter("password")
                 .usernameParameter("username")
                 .and()
-                .rememberMe() //defaults to 2 weeks
+                .rememberMe() //default up to 2 weeks
                 .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7)) // customizing remember me
                 .key("sthVerySecured") // customizing remember me
                 .rememberMeParameter("remember-me")

@@ -47,5 +47,6 @@ public class Librarian {
 
     @Column(name = "WORKER_TO")
     private LocalDate workerTo;
+
 }
 
