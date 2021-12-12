@@ -31,15 +31,21 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     PasswordEncoder passwordEncoder;
     private final ApplicationUserService applicationUserService;
-    private final SecretKey secretKey;
-    private final JwtConfig jwtConfig;
+//    private final SecretKey secretKey;
+//    private final JwtConfig jwtConfig;
+
+//    @Autowired
+//    public ApplicationSecurityConfig(@Lazy PasswordEncoder passwordEncoder, @Lazy ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
+//        this.passwordEncoder = passwordEncoder;
+//        this.applicationUserService = applicationUserService;
+//        this.secretKey = secretKey;
+//        this.jwtConfig = jwtConfig;
+//    }
 
     @Autowired
-    public ApplicationSecurityConfig(@Lazy PasswordEncoder passwordEncoder, @Lazy ApplicationUserService applicationUserService, SecretKey secretKey, JwtConfig jwtConfig) {
+    public ApplicationSecurityConfig(@Lazy PasswordEncoder passwordEncoder, @Lazy ApplicationUserService applicationUserService) {
         this.passwordEncoder = passwordEncoder;
         this.applicationUserService = applicationUserService;
-        this.secretKey = secretKey;
-        this.jwtConfig = jwtConfig;
     }
 
     @Override
@@ -49,10 +55,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
                 .csrf().disable()
                 //4 lines below uncomment, when using JWT
-/*                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-                .and()
-                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
-                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)*/
+//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+//                .and()
+//                .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
+//                .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig), JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
                 .anyRequest()
@@ -67,13 +73,13 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usernameParameter("username")
                 .and()
                 .rememberMe() //default up to 2 weeks
-                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(7)) // customizing remember me
+                .tokenValiditySeconds((int) TimeUnit.DAYS.toSeconds(14)) // customizing remember me
                 .key("sthVerySecured") // customizing remember me
                 .rememberMeParameter("remember-me")
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf enabled use PUT method for login out and remove this line
+                .logoutRequestMatcher(new AntPathRequestMatcher("/logout", "GET")) // if csrf enabled use POST method for login out and remove this line
                 .clearAuthentication(true)
                 .invalidateHttpSession(true)
                 .deleteCookies("JSESSIONID")
